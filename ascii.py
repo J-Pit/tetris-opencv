@@ -3,6 +3,8 @@ import cv2
 
 def imgToTetris(img):
     img = cv2.imread(img, 0)
+    cap=cv2.VideoCapture(0)
+
 
     # print(img)
     # print(img.shape)
