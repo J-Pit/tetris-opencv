@@ -1,23 +1,22 @@
 import cv2
 
+from camera import cam
+
 
 def imgToTetris(img):
+    cam()
     img = cv2.imread(img, 0)
-    cap=cv2.VideoCapture(0)
 
-
-    # print(img)
     # print(img.shape)
 
-    width = 15
-    height = 15
+    width = 20
+    height = 20
     dim = (width, height)
-    blur = cv2.GaussianBlur(img, (7, 7), 0)
-    th, im_th = cv2.threshold(blur, 220, 255, cv2.THRESH_BINARY);
 
 
+    img = cv2.resize(img, dim, interpolation=cv2.INTER_AREA)
 
-    im_th = cv2.resize(im_th, dim, interpolation=cv2.INTER_AREA)
+    print(img)
 
     def setupAsciiMapping():
         characterSet = list(('1' * 18) + '00000000')
@@ -30,7 +29,8 @@ def imgToTetris(img):
     # print(asciiToNum)
     transformedAscii = []
     matrix = []
-    for i in im_th:
+    for i in img:
+
         temp = []
         for j in i:
             temp.append(asciiToNum[j])
@@ -38,6 +38,7 @@ def imgToTetris(img):
 
     for i in transformedAscii:
         matrix.append(list(map(int, i)))
+
     for i in matrix:
         if 1 not in i:
             matrix.remove(i)
@@ -62,13 +63,11 @@ def imgToTetris(img):
         while len(i) < len(matrix):
             i.append(0)
 
-
     for row in matrix:
         print(row)
-
-
 
     return matrix
 
 
-imgToTetris("images/S.png")
+cam()
+imgToTetris("opencv.png")

@@ -45,12 +45,7 @@ tetris_shapes = [
     [[7, 7],
      [7, 7]]
 ]
-blocks = ["images/I.png",
-          "images/img.png",
-          "images/L.png",
-          "images/O.png",
-          "images/S.png",
-          "images/T.png"]
+blocks = ["images/img.png"]
 
 
 def rotate_clockwise(shape):
@@ -108,7 +103,7 @@ class TetrisApp(object):
     '''New Block Code'''
 
     def new_stone(self):
-        self.stone = imgToTetris(random.choice(blocks))
+        self.stone = imgToTetris("opencv.png")
         self.stone_x = int(config['cols'] / 2 - len(self.stone[0]) / 2)
         self.stone_y = 0
 
