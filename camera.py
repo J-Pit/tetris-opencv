@@ -7,8 +7,9 @@ def cam():
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     blur = cv2.GaussianBlur(gray, (7, 7), 0)
     print(blur)
-    th, im_th = cv2.threshold(blur, 100, 255, cv2.THRESH_BINARY)
+    th, im_th = cv2.threshold(blur, 80, 255, cv2.THRESH_BINARY)
     cv2.imwrite("opencv.png", im_th)
+    cv2.imwrite("cv.png", img)
 
 
 

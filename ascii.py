@@ -9,10 +9,9 @@ def imgToTetris(img):
 
     # print(img.shape)
 
-    width = 20
-    height = 20
+    width = 50
+    height = 50
     dim = (width, height)
-
 
     img = cv2.resize(img, dim, interpolation=cv2.INTER_AREA)
 
@@ -39,10 +38,14 @@ def imgToTetris(img):
     for i in transformedAscii:
         matrix.append(list(map(int, i)))
 
-    for i in matrix:
-        if 1 not in i:
-            matrix.remove(i)
+    matrix = [x for x in matrix if 1 in x]
 
+    '''
+    for i in matrix:
+        for n in i:
+            if n == 0:
+                matrix.pop(n)
+    
     for row in matrix:
         if row[0] == 0:
             row.pop(0)
@@ -62,6 +65,7 @@ def imgToTetris(img):
             i.pop(-1)
         while len(i) < len(matrix):
             i.append(0)
+    '''
 
     for row in matrix:
         print(row)
