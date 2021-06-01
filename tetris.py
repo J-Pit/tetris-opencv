@@ -3,11 +3,12 @@ import pygame, sys
 
 # The configuration
 from ascii import imgToTetris
+from cam import cam
 
 config = {
-    'cell_size': 5,
-    'cols': 100,
-    'rows': 100,
+    'cell_size': 20,
+    'cols': 20,
+    'rows': 20,
     'delay': 750,
     'maxfps': 30
 }
@@ -45,7 +46,6 @@ tetris_shapes = [
     [[7, 7],
      [7, 7]]
 ]
-blocks = ["images/img.png"]
 
 
 def rotate_clockwise(shape):
@@ -101,8 +101,8 @@ class TetrisApp(object):
         self.init_game()
 
     '''New Block Code'''
-
     def new_stone(self):
+
         self.stone = imgToTetris("opencv.png")
         self.stone_x = int(config['cols'] / 2 - len(self.stone[0]) / 2)
         self.stone_y = 0
