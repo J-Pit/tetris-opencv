@@ -1,8 +1,11 @@
 import cv2
 
 
+# displays output from computers webcam
+# press s to save image for tetris game
+# press q to quit
+
 def cam():
-    key = cv2.waitKey(1)
     cap = cv2.VideoCapture(0)
     while True:
         ret, img = cap.read()
@@ -12,11 +15,14 @@ def cam():
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             blur = cv2.GaussianBlur(gray, (7, 7), 0)
             th, im_th = cv2.threshold(blur, 80, 255, cv2.THRESH_BINARY)
-            cv2.imwrite("opencv.png", im_th)
+            cv2.imwrite("temp.png", im_th)
+        elif key == ord('q'):
+            break
+
 
     cap.release()
+    cv2.destroyAllWindows()
 
-    print(blur)
 
 
 
